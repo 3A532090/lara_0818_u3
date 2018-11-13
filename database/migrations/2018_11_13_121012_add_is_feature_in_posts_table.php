@@ -19,6 +19,13 @@ class AddIsFeatureInPostsTable extends Migration
             $table->boolean('is_feature')->default(false)->after('content');
         });
     }
+    public function down()
+    {
+        Schema::table('posts', function (Blueprint $table) {
+            $table ->string('title') ->change();
+            $table ->dropColumn('is_feature') ;
+        });
+    }
 
     /**
      * Reverse the migrations.
